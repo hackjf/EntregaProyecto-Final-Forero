@@ -22,6 +22,7 @@ const obturador = new Repuestos(12, "Obturador", 145000, 4);
 const flash = new Repuestos(13, "Flash", 132000, 34);
 let repuestos = [sensorImagen, tPrincipal, obturador, flash];
 
+
 const formatearMoneda = new Intl.NumberFormat("es-CO", {
   style: "currency",
   currency: "COP",
@@ -45,7 +46,7 @@ function calcularCosto() {
     return costoTotal;
   }
 }
-let tipoServicio = ""
+let tipoServicio = "";
 function solicitarServicio() {
   tipoServicio = prompt(
     "Escriba el tipo de servicio que requiere (sin tildes): \n 1. Diagnostico \n 2. Mantenimiento \n 3. Reparacion \n 4. Salir"
@@ -87,7 +88,7 @@ while (tipoServicio != "salir") {
           consultarExistencias()
       );
       let referenciaRepuesto = prompt(
-        "Escriba el repuesto que requiere de cambio: \n 1. Sensor de imagen \n 2. Tarjeta principal \n 3. Obturador \n 4. Flash"
+        "Escriba el # del repuesto que requiere de cambio: \n 1. Sensor de imagen \n 2. Tarjeta principal \n 3. Obturador \n 4. Flash"
       ).toLowerCase();
       let total;
       switch (referenciaRepuesto) {
