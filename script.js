@@ -54,9 +54,6 @@ const formatearMoneda = new Intl.NumberFormat("es-CO", {
     minimumFractionDigits: 0,
 });
 
-
-
-
 //funcion para seleccionar los servicios
 listaDeServicios.forEach((servicio) => {
     let tipoServicio = document.getElementById("tipoServicio")
