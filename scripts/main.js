@@ -1,19 +1,19 @@
 //Base de datos
 const listaDeServicios = [
     {
-        id: 1,
+        id: 0,
         nombre: "Diagnostico",
         precio: 75000,
         stock: 12
     },
     {
-        id: 2,
+        id: 1,
         nombre: "Mantenimiento",
         precio: 140000,
         stock: 5
     },
     {
-        id: 3,
+        id: 2,
         nombre: "Reparación",
         precio: 160000,
         stock: 4
@@ -22,25 +22,25 @@ const listaDeServicios = [
 
 const listaDeRepuestos = [
     {
-        id: 10,
+        id: 0,
         nombre: "Sensor de Imagen",
         precio: 500000,
         stock: 12
     },
     {
-        id: 11,
+        id: 1,
         nombre: "Tarjeta principal",
         precio: 450000,
         stock: 5
     },
     {
-        id: 12,
+        id: 2,
         nombre: "Obturador",
         precio: 145000,
         stock: 4
     },
     {
-        id: 13,
+        id: 3,
         nombre: "Flash",
         precio: 132000,
         stock: 34
@@ -75,14 +75,14 @@ etiquetaSubTotal.innerHTML = ``
 
 
 function servicioSeleccionado(e) {
-    e.target.value == (listaDeServicios[e.target.value - 1].id)
-    let precio = listaDeServicios[e.target.value - 1].precio
+    e.target.value == (listaDeServicios[e.target.value].id)
+    let precio = listaDeServicios[e.target.value].precio
     etiquetaSubTotal.innerHTML = `Subtotal: ${formatearMoneda.format(precio)}`
     subTotal.appendChild(etiquetaSubTotal)
     formulario.innerHTML = ``
     tipoRepuesto.classList.remove("d-block")
-    tipoRepuesto.innerHTML = `<option value="">-- Seleccione el repuesto --</option>`
-    if (e.target.value == 3) {
+    tipoRepuesto.innerHTML = `<option value="" disabled selected>-- Seleccione el repuesto --</option>`
+    if (e.target.value == 2) {
         reparacion()
     }
 }
@@ -107,8 +107,8 @@ const reparacion = () => {
 };
 
 function repuestoSeleccionado(e) {
-    e.target.value == (listaDeRepuestos[e.target.value - 10].id)
-    let precio = listaDeRepuestos[e.target.value - 10].precio
+    e.target.value == (listaDeRepuestos[e.target.value].id)
+    let precio = listaDeRepuestos[e.target.value].precio
     etiquetaSubTotal.innerHTML = `Subtotal: ${formatearMoneda.format(precio)}`
     subTotal.appendChild(etiquetaSubTotal)
 }
