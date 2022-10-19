@@ -16,61 +16,68 @@
 
   <div class="container p-5">
     <div class="row">
-      <div class="col-12">
-        <h2>Cotizador</h2>
-      </div>
-    </div>
-    <main>
-      <div class="row" id="formulario">
-        <div class="col-12">
-          <div class="form-group row">
-            <p>A continuación ingrese la información para obtener una cotización aproximada del servicio</p>
-            <div class="row">
-              <div class="col-12 col-md-6 pb-3">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
-              </div>
-              <div class="col-12 col-md-6 pb-3">
-                <label for="correo">Correo</label>
-                <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo electrónico">
-              </div>
-              <div class="col-12 col-md-6 pb-3">
-                <label for="marca">Seleccione la marca del dispositivo</label>
-                <select name="marca" id="marca" disabled="disabled" class="form-control">
-                  <option value="">-- Seleccione --</option>
-                  <option selected="true" disabled="disabled" value="1">Nikon</option>
-                  <option value="2">Ecosystem Xiaomi</option>
-                  <option value="3">Xiaomi Smartphone</option>
-                  <option value="4">Midea</option>
-                  <option value="5">Otro</option>
-                </select>
-              </div>
-              <div class="col-12 col-md-6">
-                <label for="servicio">Servicio solicitado</label>
-                <select name="tiposervicio" id="tipoServicio" class="form-control">
-                  <option value="" disabled selected>-- Seleccione el servicio --</option>
-                </select>
-              </div>
-              <div class="col-12 col-md-12 pt-2">
-                <div id="subTotal"></div>
-                <div id="divRepuestos" class="col-12 col-md-12 pt-2 pb-1">
+      <main class="col-12 col-md-12 col-lg-8">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>Cotizador</h2>
+          </div>
+        </div>
+        <div class="row" id="formulario">
+          <div class="col-12">
+            <div class="form-group row">
+              <p>A continuación ingrese la información para obtener una cotización aproximada del servicio</p>
+              <div class="row">
+                <div class="col-12 col-md-6 pb-3">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
                 </div>
-                <select id="tipoRepuesto">
-                  
-                </select>
+                <div class="col-12 col-md-6 pb-3">
+                  <label for="correo">Correo</label>
+                  <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo electrónico">
+                </div>
+                <div class="col-12 col-md-6 pb-3">
+                  <label for="marca">Seleccione la marca del dispositivo</label>
+                  <select name="marca" id="marca" disabled="disabled" class="form-control">
+                    <option value="">-- Seleccione --</option>
+                    <option selected="true" disabled="disabled" value="1">Nikon</option>
+                    <option value="2">Ecosystem Xiaomi</option>
+                    <option value="3">Xiaomi Smartphone</option>
+                    <option value="4">Midea</option>
+                    <option value="5">Otro</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="servicio">Servicio solicitado</label>
+                  <select name="tiposervicio" id="tipoServicio" class="form-control">
+                    <option value="" disabled selected>-- Seleccione el servicio --</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-12 pt-2">
+                 
+                  <div id="divRepuestos" class="col-12 col-md-12 pt-2 pb-1">
+                  </div>
+                  <select id="tipoRepuesto">
+                  </select>
+                </div>
               </div>
-
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <aside class="col-12 col-md-12 col-lg-4">
+        <div class="container justify-content-center ">
+          <div class="col-xs-1-12">
+            <div class="card">
+              <div class="card-body text-center">
+                <h3 class="card-title">Descripción del servicio</h3>
+                <div id="subTotal"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
   </div>
-
-
-
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
