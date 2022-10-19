@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script src="script.js"></script>
-    
-  </body>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+
+  <title>Cotizador</title>
+</head>
+
+<body>
+
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-12">
+        <h2>Cotizador</h2>
+      </div>
+    </div>
+    <main>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group row">
+            <p>A continuación ingrese la información para obtener una cotización aproximada del servicio</p>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+              </div>
+              <div class="col-12 col-md-6 pb-3">
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" id="correo" placeholder="Ingrese su Correo electrónico">
+              </div>
+              <div class="col-12 col-md-6 pb-2 pb-lg-0">
+                <label for="marca">Seleccione la marca del dispositivo</label>
+                <select name="marca" id="marca" disabled="disabled" class="form-control">
+                  <option value="">-- Seleccione --</option>
+                  <option selected="true" disabled="disabled" value="1">Nikon</option>
+                  <option value="2">Ecosystem Xiaomi</option>
+                  <option value="3">Xiaomi Smartphone</option>
+                  <option value="4">Midea</option>
+                  <option value="5">Otro</option>s
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="servicio">Servicio solicitado</label>
+                <select name="tiposervicio" id="tipoServicio" class="form-control">
+                  <option value="">-- Seleccione --</option>
+                </select>
+              </div>
+              <div id="subTotal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
