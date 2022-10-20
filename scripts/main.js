@@ -35,13 +35,13 @@ const listaDeRepuestos = [
     },
     {
         id: 2,
-        nombre: "Obturador",
+        nombre: "Sistema obturador",
         precio: 145000,
         stock: 4
     },
     {
         id: 3,
-        nombre: "Flash",
+        nombre: "Sistema de flash",
         precio: 132000,
         stock: 34
     }
@@ -54,67 +54,94 @@ const formatearMoneda = new Intl.NumberFormat("es-CO", {
     minimumFractionDigits: 0,
 });
 
+let textoDebajo = document.getElementById("divRepuestos")
+let subTotal = document.getElementById("subTotal")
+let etiquetaSubTotal = document.createElement("label")
+let mostrarServicio = document.createElement("p")
+let descripcionServicio = document.createElement("p")
+etiquetaSubTotal.innerHTML = ``
+
+let carrito = []
+
 //funcion para seleccionar los servicios
 listaDeServicios.forEach((servicio) => {
     let tipoServicio = document.getElementById("tipoServicio")
     let listaServicios = document.createElement("option")
     listaServicios.value = servicio.id
     listaServicios.text = servicio.nombre
-    listaServicios.setAttribute("mark", servicio.id)
     tipoServicio.appendChild(listaServicios)
     tipoServicio.addEventListener("change", servicioSeleccionado)
 })
 
 
-let formulario = document.getElementById("divRepuestos")
-let subTotal = document.getElementById("subTotal")
-let etiquetaSubTotal = document.createElement("label")
-let mostrarServicio = document.createElement("p")
-let descripcionServicio = document.createElement("p")
-etiquetaSubTotal.classList.add("text-center", "text-success", "fw-bold", "form-control", "h-100")
-etiquetaSubTotal.innerHTML = ``
-
-
 function servicioSeleccionado(e) {
     e.target.value == (listaDeServicios[e.target.value].id)
     let precio = listaDeServicios[e.target.value].precio
-    etiquetaSubTotal.innerHTML = `Subtotal: ${formatearMoneda.format(precio)}`    
-    descripcionServicio.innerHTML = listaDeServicios[e.target.value].msg
+    etiquetaSubTotal.classList.add("text-center", "text-success", "fw-bold", "form-control", "h-100")
+    etiquetaSubTotal.innerHTML = `Subtotal: ${formatearMoneda.format(precio)}`
     descripcionServicio.classList.add("text-info", "fw-bold", "form-control", "h-100")
+    descripcionServicio.innerHTML = listaDeServicios[e.target.value].msg
+    mostrarServicio.classList.add("text-center", "card-text", "font-weight-bold")
     mostrarServicio.innerHTML = `Servicio de ${listaDeServicios[e.target.value].nombre}`
-    mostrarServicio.classList.add("text-center", "card-text", "font-weight-bold")    
     subTotal.appendChild(mostrarServicio)
     subTotal.appendChild(etiquetaSubTotal)
-    formulario.innerHTML = ``
+    repuestos.innerHTML = ``
     tipoRepuesto.classList.remove("d-block")
-    tipoRepuesto.innerHTML = `<option value="" disabled selected>-- Seleccione el repuesto --</option>`
-    formulario.appendChild(descripcionServicio)
+    repuestos.appendChild(descripcionServicio)
     if (e.target.value == 2) {
         reparacion()
     }
 }
 
+let repuestos = document.getElementById("tipoRepuesto")
 const reparacion = () => {
-    formulario.innerHTML = ``
-   
-    formulario.appendChild(descripcionServicio)
+    repuestos.innerHTML = ``
+    textoDebajo.appendChild(descripcionServicio)
     listaDeRepuestos.forEach((repuesto) => {
-        let tipoRepuesto = document.getElementById("tipoRepuesto")
-        tipoRepuesto.classList.add("d-block", "form-control")
-
-        let listaRepuestos = document.createElement("option")
-        listaRepuestos.value = repuesto.id
-        listaRepuestos.text = repuesto.nombre
-        listaRepuestos.setAttribute("mark", repuesto.id)
-
-        tipoRepuesto.appendChild(listaRepuestos)
+        let container = document.createElement("div")
+        container.classList.add("card", "col-sm-12", "col-md-6" , "col-xl-3")
+        //Body
+        let cardBody = document.createElement("div")
+        cardBody.classList.add("card-body", "text-center")
+        //Title
+        let cardTitle = document.createElement("h6")
+        cardTitle.classList.add("card-title")
+        cardTitle.innerText = repuesto.nombre
+        //Precio
+        let cardPrice = document.createElement("p")
+        cardPrice.classList.add("card-text")
+        cardPrice.innerText = `${formatearMoneda.format(repuesto.precio)}`
+        //Stock
+        let cardStock = document.createElement("p")
+        cardStock.classList.add("card-text")
+        cardStock.innerText = `Disponibles: ${repuesto.stock}`
+        //Button
+        let cardButton = document.createElement("button")
+        cardButton.classList.add("btn", "btn-outline-info", "btn-sm")
+        cardButton.innerText = `Agregar`
+        cardButton.setAttribute("mark", repuesto.id)
+        cardButton.addEventListener("click", repuestoSeleccionado)
+    
+        cardBody.appendChild(cardTitle)
+        cardBody.appendChild(cardPrice)
+        cardBody.appendChild(cardStock)
+        cardBody.appendChild(cardButton)
+        container.appendChild(cardBody)
+        repuestos.appendChild(container)
+        
+        
     })
-    tipoRepuesto.addEventListener("change", repuestoSeleccionado)
 };
 
 
 function repuestoSeleccionado(e) {
-    e.target.value == (listaDeRepuestos[e.target.value].id)
-    let precio = listaDeRepuestos[e.target.value].precio
+   /*  console.log(listaDeRepuestos[e.target.value].id)
+    console.log(listaDeRepuestos[e.target.value].nombre)
+    console.log(listaDeRepuestos[e.target.value].precio)
+    console.log(listaDeRepuestos[e.target.value].stock) */
+
+    carrito.push(e.target.getAttribute("mark"))
+    console.log(carrito)
+
 
 }
