@@ -76,9 +76,9 @@ listaDeServicios.forEach((servicio) => {
 
 function servicioSeleccionado(e) {
     e.target.value == (listaDeServicios[e.target.value].id)
-    let precio = listaDeServicios[e.target.value].precio
-    etiquetaSubTotal.classList.add("text-center", "text-success", "fw-bold", "form-control", "h-100")
+    let precio = listaDeServicios[e.target.value].precio    
     etiquetaSubTotal.innerHTML = `Subtotal: ${formatearMoneda.format(precio)}`
+    etiquetaSubTotal.classList.add("text-center", "text-success", "fw-bold", "form-control", "h-100", "wow", "fadeIn")
     descripcionServicio.classList.add("text-info", "fw-bold", "form-control", "h-100")
     descripcionServicio.innerHTML = listaDeServicios[e.target.value].msg
     mostrarServicio.classList.add("text-center", "card-text", "font-weight-bold")
@@ -99,18 +99,18 @@ const reparacion = () => {
     textoDebajo.appendChild(descripcionServicio)
     listaDeRepuestos.forEach((repuesto) => {
         let container = document.createElement("div")
-        container.classList.add("card", "col-sm-12", "col-md-6" , "col-xl-3")
+        container.classList.add("card", "col-sm-12", "col-md-6" , "col-xl-3", "wow", "fadeIn")
         //Body
         let cardBody = document.createElement("div")
         cardBody.classList.add("card-body", "text-center")
         //Title
-        let cardTitle = document.createElement("h6")
-        cardTitle.classList.add("card-title")
-        cardTitle.innerText = repuesto.nombre
+        let cardTitulo = document.createElement("h6")
+        cardTitulo.classList.add("card-title")
+        cardTitulo.innerText = repuesto.nombre
         //Precio
-        let cardPrice = document.createElement("p")
-        cardPrice.classList.add("card-text")
-        cardPrice.innerText = `${formatearMoneda.format(repuesto.precio)}`
+        let CardPrecio = document.createElement("p")
+        CardPrecio.classList.add("card-text")
+        CardPrecio.innerText = `${formatearMoneda.format(repuesto.precio)}`
         //Stock
         let cardStock = document.createElement("p")
         cardStock.classList.add("card-text")
@@ -122,12 +122,13 @@ const reparacion = () => {
         cardButton.setAttribute("mark", repuesto.id)
         cardButton.addEventListener("click", repuestoSeleccionado)
     
-        cardBody.appendChild(cardTitle)
-        cardBody.appendChild(cardPrice)
+        cardBody.appendChild(cardTitulo)
+        cardBody.appendChild(CardPrecio)
         cardBody.appendChild(cardStock)
         cardBody.appendChild(cardButton)
         container.appendChild(cardBody)
         repuestos.appendChild(container)
+        
         
         
     })
@@ -135,13 +136,13 @@ const reparacion = () => {
 
 
 function repuestoSeleccionado(e) {
-   /*  console.log(listaDeRepuestos[e.target.value].id)
-    console.log(listaDeRepuestos[e.target.value].nombre)
-    console.log(listaDeRepuestos[e.target.value].precio)
-    console.log(listaDeRepuestos[e.target.value].stock) */
-
     carrito.push(e.target.getAttribute("mark"))
     console.log(carrito)
+    renderCarrito()
+    
+}
 
+function renderCarrito(){
 
+    
 }

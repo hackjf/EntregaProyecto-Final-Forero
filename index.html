@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="animate/animate.css">
 
   <title>Cotizador</title>
 </head>
@@ -25,7 +26,8 @@
         <div class="row" id="formulario">
           <div class="col-12">
             <div class="form-group row">
-              <p class="lead">A continuación ingrese la información para obtener una cotización aproximada del servicio</p>
+              <p class="lead">A continuación ingrese la información para obtener una cotización aproximada del servicio
+              </p>
               <div class="row">
                 <div class="col-12 col-md-6 pb-3">
                   <label for="nombre">Nombre</label>
@@ -52,7 +54,7 @@
                     <option value="" disabled selected>-- Seleccione el servicio --</option>
                   </select>
                 </div>
-                <div class="col-12 col-md-12 pt-2">                 
+                <div class="col-12 col-md-12 pt-2">
                   <div id="divRepuestos" class="col-12 col-md-12 pt-2 pb-1">
                   </div>
                   <div class="row" id="tipoRepuesto">
@@ -77,6 +79,16 @@
       </aside>
     </div>
   </div>
+  
+  <pre-footer>
+    <div class="container fixed-bottom">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center">
+          <p class="lead wow fadeInUp">© 2022 - Jeisson Forero - Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
+  </pre-footer>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -86,6 +98,12 @@
     crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
   <script src="scripts/main.js"></script>
+
+  <script src="animate/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
+
 </body>
 
 </html>
