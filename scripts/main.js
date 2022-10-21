@@ -20,7 +20,6 @@ function main () {
             msg: "ha elegido servicio de reparación, a continuación seleccione el repuesto del equipo a cotizar, ten en cuenta que el valor dado es un estimado y que el precio exacto se dará al momento del diagnóstico y también la disposición de stock del repuesto",
         },
     ]
-
     const listaDeRepuestos = [
         {
             id: 0,
@@ -61,17 +60,13 @@ function main () {
         nombreCliente.value = nombreCliente.value.replace(/[^a-zA-Z ]/g, ""
         )
        
-    })
-    
-    
-
+    })   
     let apellidoCliente = document.getElementById("apellido")
     apellidoCliente.addEventListener("input", () => {apellidoCliente.value=capitalize(apellidoCliente.value)
         apellidoCliente.value = apellidoCliente.value.replace(/[^a-zA-Z ]/g, ""
         )
         
-    })
-    
+    }) 
 
     function capitalize(word) {
         return word[0].toUpperCase() + word.slice(1);
@@ -218,7 +213,7 @@ function main () {
 
     function renderCarrito() {
         guardarCarritoEnStorage()
-
+        
         subTotal.innerHTML = ``
         subTotal.appendChild(mostrarServicio)
         subTotal.appendChild(etiquetaSubTotal)
@@ -241,7 +236,7 @@ function main () {
                 "wow",
                 "fadeIn"
             )
-            linea.innerText = `${cantidad} x ${item[0].nombre} - $${item[0].precio}`
+            linea.innerText = `${cantidad} x ${item[0].nombre} - ${formatearMoneda.format(item[0].precio)}`
 
             let bEliminarRepuesto = document.createElement("button")
             bEliminarRepuesto.classList.add("btn", "btn-outline-danger", "btn-sm")
