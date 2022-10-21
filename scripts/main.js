@@ -197,7 +197,7 @@ function renderCarrito() {
         subTotal.appendChild(linea)
 
 
-        totalValue.classList.add("text-center", "text-success", "fw-bold", "form-control", "h-100", "wow", "fadeIn")
+        totalValue.classList.add("text-center", "text-danger", "fw-bold", "form-control", "h-100", "wow", "fadeIn")
         totalValue.innerHTML = `Total: ${formatearMoneda.format(calcularTotal())}`
 
 
