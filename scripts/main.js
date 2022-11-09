@@ -83,6 +83,7 @@ function main() {
 
   cargarCarritoStorage()
 
+  
   //funcion para seleccionar los servicios
   listaDeServicios.forEach((servicio) => {
     let tipoServicio = document.getElementById("tipoServicio")
@@ -162,14 +163,16 @@ function main() {
     subTotal.appendChild(costo)
     
     subTotal.appendChild(botonImprimir)
-    if (e.target.value == 2) {
-      ivaCosto.classList.add("d-none")
-      costo.classList.add("d-none")
-      ivaCosto.innerHTML = ``
-      costo.innerHTML = ``
-      reparacion()
+
+    e.target.value == 2 && (
+      ivaCosto.classList.add("d-none"),
+      costo.classList.add("d-none"),
+      ivaCosto.innerHTML = ``,
+      costo.innerHTML = ``,
+      reparacion(),
       renderCarrito()
-    }
+      )
+    
   }
 
   const reparacion = () => {
@@ -296,27 +299,28 @@ function main() {
     })
     renderCarrito()
 
-    if (carrito.length === 0) {
+    carrito.length === 0 &&  (
       ivaValue.classList.remove(
         "text-center",
         "text-success",
         "fw-bold",
         "form-control",
         "h-100"
-      )
+      ),
       totalValue.classList.remove(
         "text-center",
         "text-success",
         "fw-bold",
         "form-control",
         "h-100"
-      )
-      totalValue.innerHTML = ``
-      ivaValue.innerHTML = ``
+      ),
+      totalValue.innerHTML = ``,
+      ivaValue.innerHTML = ``,
 
-      subTotal.appendChild(ivaValue)
+      subTotal.appendChild(ivaValue),
       subTotal.appendChild(totalValue)
-    }
+    )
+    
   }
 
   function calcularTotal() {
@@ -341,9 +345,7 @@ function main() {
   }
 
   function cargarCarritoStorage() {
-    if (localStorage.getItem("carrito") !== null) {
-      carrito = JSON.parse(localStorage.getItem("carrito"))
-    }
+    localStorage.getItem("carrito") !== null && (carrito = JSON.parse(localStorage.getItem("carrito")))    
   }
 
   let botonImprimir = document.createElement("button")
