@@ -362,6 +362,44 @@ function main() {
   function imprimirCotizacion() {
     window.print()
   }
+
+
+  
+const API_URL = "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
+
+const xhr = new XMLHttpRequest()
+
+function onrequestHandler() {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    const data = JSON.parse(xhr.responseText)
+    console.log(data)
+    let HTMLResponse = document.getElementById("api")
+    let hoy = "2022-11-10T00:00:00.000"
+
+    const tp1 = data.find((fecha) => fecha.vigenciadesde === hoy)
+    console.log(tp1)
+
+    let fecha = document.createElement("p")
+    let valor = document.createElement("p")
+    fecha.classList.add("text-center", "text-danger", "fw-bold", "form-control", "h-100")
+    valor.classList.add("text-center", "text-danger", "fw-bold", "fo<rm-control", "h-100")
+    fecha.textContent = tp1.vigenciadesde
+    valor.textContent = tp1.valor
+
+    HTMLResponse.appendChild(fecha)
+    HTMLResponse.appendChild(valor)
+
+  }
+}
+
+xhr.addEventListener("load", onrequestHandler)
+xhr.open("GET", API_URL)
+xhr.send()
+
+
+   
+
+
 }
 
 main()
