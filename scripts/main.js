@@ -1,52 +1,14 @@
 function main() {
   //Base de datos
-  const listaDeServicios = [
-    {
-      id: 0,
-      nombre: "Diagnostico",
-      precio: 75000,
-      msg: "ha elegido servicio de diagnóstico, el cual consiste en realizar la validación técnica en nuestro centro de servicio y generar una cotización según lo requiera el equipo.",
-    },
-    {
-      id: 1,
-      nombre: "Mantenimiento",
-      precio: 140000,
-      msg: "ha elegido servicio de mantenimiento, el cual consiste en realizar inicialmente una validación técnica en nuestro centro de servicio, seguido de la limpieza y mantenimiento del equipo según lo requiera. En el caso de que el equipo requiera de una reparación, se generará una cotización para su posterior aprobación.",
-    },
-    {
-      id: 2,
-      nombre: "Reparación",
-      precio: 160000,
-      msg: "ha elegido servicio de reparación, a continuación seleccione el repuesto del equipo a cotizar, ten en cuenta que el valor dado es un estimado y que el precio exacto se dará al momento del diagnóstico y también la disposición de stock del repuesto",
-    },
-  ]
-  const listaDeRepuestos = [
-    {
-      id: 0,
-      nombre: "Sensor de Imagen",
-      precio: 500000,
-      stock: 12,
-    },
-    {
-      id: 1,
-      nombre: "Tarjeta principal",
-      precio: 450000,
-      stock: 5,
-    },
-    {
-      id: 2,
-      nombre: "Sistema obturador",
-      precio: 145000,
-      stock: 4,
-    },
-    {
-      id: 3,
-      nombre: "Sistema de flash",
-      precio: 132000,
-      stock: 34,
-    },
-  ]
 
+  fetch("listaDeServicios.json")
+  .then(res => res.json())
+  .then(listaDeServicios => {
+
+    fetch("listaDeRepuestos.json")
+  .then(res => res.json())
+  .then(listaDeRepuestos => {
+    
   //formateo de moneda
   const formatearMoneda = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -56,8 +18,10 @@ function main() {
 
   let nombreCliente = document.getElementById("nombre")
 
+
   nombreCliente.addEventListener("input", () => {
     nombreCliente.value = capitalize(nombreCliente.value)
+    nombreCliente.setAttribute("name",nombreCliente)
     nombreCliente.value = nombreCliente.value.replace(/[^a-zA-Z ]/g, "")
   })
   let apellidoCliente = document.getElementById("apellido")
@@ -83,7 +47,6 @@ function main() {
 
   cargarCarritoStorage()
 
-  
   //funcion para seleccionar los servicios
   listaDeServicios.forEach((servicio) => {
     let tipoServicio = document.getElementById("tipoServicio")
@@ -161,18 +124,16 @@ function main() {
 
     subTotal.appendChild(ivaCosto)
     subTotal.appendChild(costo)
-    
+
     subTotal.appendChild(botonImprimir)
 
-    e.target.value == 2 && (
-      ivaCosto.classList.add("d-none"),
+    e.target.value == 2 &&
+      (ivaCosto.classList.add("d-none"),
       costo.classList.add("d-none"),
-      ivaCosto.innerHTML = ``,
-      costo.innerHTML = ``,
+      (ivaCosto.innerHTML = ``),
+      (costo.innerHTML = ``),
       reparacion(),
-      renderCarrito()
-      )
-    
+      renderCarrito())
   }
 
   const reparacion = () => {
@@ -287,7 +248,7 @@ function main() {
       ivaValue.innerHTML = `IVA: ${formatearMoneda.format(calcularIva())}`
     })
     subTotal.appendChild(ivaValue)
-    subTotal.appendChild(totalValue)    
+    subTotal.appendChild(totalValue)
     subTotal.appendChild(botonImprimir)
   }
 
@@ -299,8 +260,8 @@ function main() {
     })
     renderCarrito()
 
-    carrito.length === 0 &&  (
-      ivaValue.classList.remove(
+    carrito.length === 0 &&
+      (ivaValue.classList.remove(
         "text-center",
         "text-success",
         "fw-bold",
@@ -314,13 +275,10 @@ function main() {
         "form-control",
         "h-100"
       ),
-      totalValue.innerHTML = ``,
-      ivaValue.innerHTML = ``,
-
+      (totalValue.innerHTML = ``),
+      (ivaValue.innerHTML = ``),
       subTotal.appendChild(ivaValue),
-      subTotal.appendChild(totalValue)
-    )
-    
+      subTotal.appendChild(totalValue))
   }
 
   function calcularTotal() {
@@ -345,7 +303,8 @@ function main() {
   }
 
   function cargarCarritoStorage() {
-    localStorage.getItem("carrito") !== null && (carrito = JSON.parse(localStorage.getItem("carrito")))    
+    localStorage.getItem("carrito") !== null &&
+      (carrito = JSON.parse(localStorage.getItem("carrito")))
   }
 
   let botonImprimir = document.createElement("button")
@@ -363,43 +322,74 @@ function main() {
     window.print()
   }
 
+  let date = new Date()
+  let fechaHoy =
+    String() +
+    String(date.getFullYear()).padStart(2, "0") +
+    "-" +
+    (date.getMonth() + 1) +
+    "-" +
+    date.getDate() +
+    "T00:00:00.000"
+  let fechaParaMostrar =
+    String() +
+    String(date.getDate()).padStart(2, "0") +
+    "/" +
+    (date.getMonth() + 1) +
+    "/" +
+    date.getFullYear()
 
-  
-const API_URL = "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
+  //consumo de API
+  const API_URL =
+    "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
 
-const xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest()
 
-function onrequestHandler() {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    const data = JSON.parse(xhr.responseText)
-    console.log(data)
-    let HTMLResponse = document.getElementById("api")
-    let hoy = "2022-11-10T00:00:00.000"
+  function onrequestHandler() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText)
 
-    const tp1 = data.find((fecha) => fecha.vigenciadesde === hoy)
-    console.log(tp1)
+      let apiTRM = document.getElementById("api")
 
-    let fecha = document.createElement("p")
-    let valor = document.createElement("p")
-    fecha.classList.add("text-center", "text-danger", "fw-bold", "form-control", "h-100")
-    valor.classList.add("text-center", "text-danger", "fw-bold", "fo<rm-control", "h-100")
-    fecha.textContent = tp1.vigenciadesde
-    valor.textContent = tp1.valor
+      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy)
+      let trmHoy = tp1.valor
 
-    HTMLResponse.appendChild(fecha)
-    HTMLResponse.appendChild(valor)
+      let fecha = document.createElement("p")
+      let valor = document.createElement("p")
+      fecha.innerText = `Fecha: ${fechaParaMostrar}`
+      valor.innerText = `Valor TRM: ${formatearMoneda.format(trmHoy)}`
+      fecha.classList.add(
+        "text-info",
+        "fw-bold",
+        "d-inline",
+        "mx-3",
+        "wow",
+        "fadeIn", "bg-dark",
+        "d-inline-block",
+        
+      )
+      valor.classList.add(
+        "text-info",
+        "fw-bold",
+        "d-inline",
+        "mx-3",
+        "wow",
+        "fadeIn", "bg-dark",
+        "d-inline-block",
+      )
 
+      apiTRM.appendChild(fecha)
+      apiTRM.appendChild(valor)
+    }
   }
-}
 
-xhr.addEventListener("load", onrequestHandler)
-xhr.open("GET", API_URL)
-xhr.send()
-
-
-   
+  xhr.addEventListener("load", onrequestHandler)
+  xhr.open("GET", API_URL)
+  xhr.send()
 
 
+  })
+  })
 }
 
 main()

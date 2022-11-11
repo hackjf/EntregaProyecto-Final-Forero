@@ -1,0 +1,26 @@
+[
+    {
+      "id": 0,
+      "nombre": "Sensor de Imagen",
+      "precio": 500000,
+      "stock": 12
+    },
+    {
+      "id": 1,
+      "nombre": "Tarjeta principal",
+      "precio": 450000,
+      "stock": 5
+    },
+    {
+      "id": 2,
+      "nombre": "Sistema obturador",
+      "precio": 145000,
+      "stock": 4
+    },
+    {
+      "id": 3,
+      "nombre": "Sistema de flash",
+      "precio": 132000,
+      "stock": 34
+    }
+  ]

@@ -1,0 +1,20 @@
+[
+    {
+      "id": 0,
+      "nombre": "Diagnóstico",
+      "precio": 75000,
+      "msg": "ha elegido servicio de diagnóstico, el cual consiste en realizar la validación técnica en nuestro centro de servicio y generar una cotización según lo requiera el equipo."
+    },
+    {
+      "id": 1,
+      "nombre": "Mantenimiento",
+      "precio": 140000,
+      "msg": "ha elegido servicio de mantenimiento, el cual consiste en realizar inicialmente una validación técnica en nuestro centro de servicio, seguido de la limpieza y mantenimiento del equipo según lo requiera. En el caso de que el equipo requiera de una reparación, se generará una cotización para su posterior aprobación."
+    },
+    {
+      "id": 2,
+      "nombre": "Reparación",
+      "precio": 160000,
+      "msg": "ha elegido servicio de reparación, a continuación seleccione el repuesto del equipo a cotizar, ten en cuenta que el valor dado es un estimado y que el precio exacto se dará al momento del diagnóstico y también la disposición de stock del repuesto"
+    }
+  ]
