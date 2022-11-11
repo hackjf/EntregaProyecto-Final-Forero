@@ -375,14 +375,13 @@ function main() {
         "mx-3",
         "wow",
         "fadeIn", "bg-dark",
-        "d-inline-block",
+        "d-inline-block"
       )
 
       apiTRM.appendChild(fecha)
       apiTRM.appendChild(valor)
     }
   }
-
   xhr.addEventListener("load", onrequestHandler)
   xhr.open("GET", API_URL)
   xhr.send()
