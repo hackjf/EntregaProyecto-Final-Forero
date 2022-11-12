@@ -351,7 +351,7 @@ function main() {
 
       let apiTRM = document.getElementById("api")
 
-      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy)
+      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy || fecha.vigenciahasta > fechaHoy)
       let trmHoy = tp1.valor
 
       let fecha = document.createElement("p")
