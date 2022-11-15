@@ -342,17 +342,15 @@ function main() {
   //consumo de API
   const API_URL =
     "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
-
   const xhr = new XMLHttpRequest()
-
   function onrequestHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const data = JSON.parse(xhr.responseText)
-
       let apiTRM = document.getElementById("api")
 
-      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy || fecha.vigenciahasta > fechaHoy)
+      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy || fecha.vigenciahasta >= fechaHoy)
       let trmHoy = tp1.valor
+
 
       let fecha = document.createElement("p")
       let valor = document.createElement("p")
