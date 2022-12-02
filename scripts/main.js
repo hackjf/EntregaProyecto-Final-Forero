@@ -329,7 +329,7 @@ function main() {
     "-" +
     (date.getMonth() + 1) +
     "-" +
-    date.getDate() +
+    String(date.getDate()).padStart(2,'0') +
     "T00:00:00.000"
   let fechaParaMostrar =
     String() +
@@ -339,6 +339,7 @@ function main() {
     "/" +
     date.getFullYear()
 
+    console.log(fechaHoy)
   //consumo de API
   const API_URL =
     "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
@@ -382,7 +383,7 @@ function main() {
   }
   xhr.addEventListener("load", onrequestHandler)
   xhr.open("GET", API_URL)
-  xhr.send()
+  xhr.send() 
 
 
   })
