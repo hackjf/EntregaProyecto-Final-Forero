@@ -327,7 +327,7 @@ function main() {
     String() +
     String(date.getFullYear()).padStart(2, "0") +
     "-" +
-    (date.getMonth() + 1) +
+    String(date.getMonth()).padStart(2,'0') +
     "-" +
     String(date.getDate()).padStart(2,'0') +
     "T00:00:00.000"
