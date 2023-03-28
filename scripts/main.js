@@ -323,35 +323,51 @@ function main() {
   }
 
   let date = new Date()
-  let fechaHoy =
-    String() +
-    String(date.getFullYear()).padStart(2, "0") +
-    "-" +
-    String(date.getMonth()).padStart(2,'0') +
-    "-" +
-    String(date.getDate()).padStart(2,'0') +
-    "T00:00:00.000"
-  let fechaParaMostrar =
-    String() +
-    String(date.getDate()).padStart(2, "0") +
-    "/" +
-    (date.getMonth() + 1) +
-    "/" +
-    date.getFullYear()
+let year = date.getFullYear()
+let month = String(date.getMonth() + 1).padStart(2, "0")
+let day = String(date.getDate()).padStart(2, "0")
 
-    console.log(fechaHoy)
+let fechaHoy = `${year}-${month}-${day}T00:00:00.000`
+console.log(fechaHoy)
+
+const meses = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre"
+];
+
+let fechaParaMostrar =
+  date.getDate() +
+  " de " +
+  meses[date.getMonth()] +
+  " " +
+  date.getFullYear()
+
+console.log(fechaParaMostrar)
+
   //consumo de API
   const API_URL =
     "https://www.datos.gov.co/resource/32sa-8pi3.json?$where=valor>4000"
+
   const xhr = new XMLHttpRequest()
+
   function onrequestHandler() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const data = JSON.parse(xhr.responseText)
+
       let apiTRM = document.getElementById("api")
 
-      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy || fecha.vigenciahasta >= fechaHoy)
+      const tp1 = data.find((fecha) => fecha.vigenciadesde === fechaHoy || fecha.vigenciahasta > fechaHoy)
       let trmHoy = tp1.valor
-
 
       let fecha = document.createElement("p")
       let valor = document.createElement("p")
@@ -383,7 +399,7 @@ function main() {
   }
   xhr.addEventListener("load", onrequestHandler)
   xhr.open("GET", API_URL)
-  xhr.send() 
+  xhr.send()
 
 
   })
